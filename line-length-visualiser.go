@@ -10,7 +10,19 @@ func main() {
 	fileName := os.Args[1]
 
 	lines := readLines(fileName)
-	fmt.Println(lines)
+	lengths := toLengths(lines)
+
+	fmt.Println(lengths)
+}
+
+func toLengths(lines []string) any {
+	lengths := make([]int, len(lines))
+
+	for index, line := range lines {
+		lengths[index] = len(line)
+	}
+
+	return lengths
 }
 
 func readLines(fileName string) []string {
