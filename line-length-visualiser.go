@@ -18,7 +18,7 @@ func readLines(fileName string) []string {
 
 	lines := strings.Split(contents, "\n")
 
-	return lines
+	return lines[0 : len(lines)-1]
 }
 
 func readFile(fileName string) string {
