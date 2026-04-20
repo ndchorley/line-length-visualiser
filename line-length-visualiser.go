@@ -15,16 +15,6 @@ func main() {
 	fmt.Println(lengths)
 }
 
-func toLengths(lines []string) any {
-	lengths := make([]int, len(lines))
-
-	for index, line := range lines {
-		lengths[index] = len(line)
-	}
-
-	return lengths
-}
-
 func readLines(fileName string) []string {
 	contents := readFile(fileName)
 
@@ -38,4 +28,14 @@ func readFile(fileName string) string {
 	contents := string(bytes)
 
 	return contents
+}
+
+func toLengths(lines []string) any {
+	lengths := make([]int, len(lines))
+
+	for index, line := range lines {
+		lengths[index] = len(line)
+	}
+
+	return lengths
 }
