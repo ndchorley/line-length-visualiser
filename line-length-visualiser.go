@@ -30,7 +30,7 @@ func readFile(fileName string) string {
 	return contents
 }
 
-func toLengths(lines []string) any {
+func toLengths(lines []string) []int {
 	lengths := make([]int, len(lines))
 
 	for index, line := range lines {
