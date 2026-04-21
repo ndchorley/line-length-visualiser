@@ -11,8 +11,23 @@ func main() {
 
 	lines := readLines(fileName)
 	lengths := toLengths(lines)
+	visualisation := makeVisualisation(lengths)
 
-	fmt.Println(lengths)
+	fmt.Println(visualisation)
+}
+
+func makeVisualisation(lengths []int) string {
+	var visualisation strings.Builder
+
+	for _, length := range lengths {
+		for i := 1; i <= length; i++ {
+			visualisation.WriteString(`◼`)
+		}
+
+		visualisation.WriteString("\n")
+	}
+
+	return visualisation.String()
 }
 
 func readLines(fileName string) []string {
