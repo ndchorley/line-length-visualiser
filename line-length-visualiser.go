@@ -21,15 +21,34 @@ func main() {
 }
 
 type Statistics struct {
-	mean float64
+	mean              float64
+	standardDeviation float64
 }
 
 func makeReport(stats Statistics) string {
-	return fmt.Sprintf("Mean: %f", stats.mean)
+	report := fmt.Sprintf("Mean: %f", stats.mean)
+	report += "\n"
+	report += fmt.Sprintf("Standard deviation: %f", stats.standardDeviation)
+
+	return report
 }
 
 func gatherStatistics(lengths []int) Statistics {
-	return Statistics{calculateMean(lengths)}
+	mean := calculateMean(lengths)
+	standardDeviation :=
+		calculateStandardDeviation(mean, lengths)
+
+	return Statistics{mean, standardDeviation}
+}
+
+func calculateStandardDeviation(mean float64, lengths []int) float64 {
+	totalDeviation := 0.0
+
+	for _, length := range lengths {
+		totalDeviation += (float64(length) - mean) * (float64(length) - mean)
+	}
+
+	return totalDeviation / float64(len(lengths))
 }
 
 func calculateMean(lengths []int) float64 {
