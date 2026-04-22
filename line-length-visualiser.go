@@ -11,9 +11,35 @@ func main() {
 
 	lines := readLines(fileName)
 	lengths := toLengths(lines)
+	stats := gatherStatistics(lengths)
+
 	visualisation := makeVisualisation(lengths)
+	report := makeReport(stats)
 
 	fmt.Println(visualisation)
+	fmt.Println(report)
+}
+
+type Statistics struct {
+	mean float64
+}
+
+func makeReport(stats Statistics) string {
+	return fmt.Sprintf("Mean: %f", stats.mean)
+}
+
+func gatherStatistics(lengths []int) Statistics {
+	return Statistics{calculateMean(lengths)}
+}
+
+func calculateMean(lengths []int) float64 {
+	total := 0.0
+
+	for _, length := range lengths {
+		total += float64(length)
+	}
+
+	return total / float64(len(lengths))
 }
 
 func makeVisualisation(lengths []int) string {
