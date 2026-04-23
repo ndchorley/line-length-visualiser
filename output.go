@@ -6,7 +6,9 @@ import (
 )
 
 func makeReport(stats Statistics) string {
-	report := fmt.Sprintf("Mean: %f", stats.mean)
+	report := fmt.Sprintf("Number of lines: %d", stats.numberOfLines)
+	report += "\n\n"
+	report += fmt.Sprintf("Mean: %f", stats.mean)
 	report += "\n"
 	report += fmt.Sprintf("Standard deviation: %f", stats.standardDeviation)
 

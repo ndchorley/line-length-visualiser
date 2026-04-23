@@ -1,6 +1,7 @@
 package main
 
 type Statistics struct {
+	numberOfLines     int
 	mean              float64
 	standardDeviation float64
 }
@@ -10,7 +11,7 @@ func gatherStatistics(lengths []int) Statistics {
 	standardDeviation :=
 		calculateStandardDeviation(mean, lengths)
 
-	return Statistics{mean, standardDeviation}
+	return Statistics{len(lengths), mean, standardDeviation}
 }
 
 func calculateStandardDeviation(mean float64, lengths []int) float64 {
