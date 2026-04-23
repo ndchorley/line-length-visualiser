@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func makeReport(stats Statistics) string {
+func reportFor(stats Statistics) string {
 	report := fmt.Sprintf("Number of lines: %d", stats.numberOfLines)
 	report += "\n\n"
 	report += fmt.Sprintf("Mean: %f", stats.mean)
@@ -15,7 +15,7 @@ func makeReport(stats Statistics) string {
 	return report
 }
 
-func makeVisualisation(lengths []int) string {
+func visualisationFor(lengths []int) string {
 	var visualisation strings.Builder
 
 	for _, length := range lengths {

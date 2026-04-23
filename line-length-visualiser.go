@@ -12,9 +12,6 @@ func main() {
 	lengths := toLengths(lines)
 	stats := gatherStatistics(lengths)
 
-	visualisation := makeVisualisation(lengths)
-	statsReport := makeReport(stats)
-
-	fmt.Println(visualisation)
-	fmt.Println(statsReport)
+	fmt.Println(visualisationFor(lengths))
+	fmt.Println(reportFor(stats))
 }
