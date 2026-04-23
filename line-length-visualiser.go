@@ -13,8 +13,8 @@ func main() {
 	stats := gatherStatistics(lengths)
 
 	visualisation := makeVisualisation(lengths)
-	report := makeReport(stats)
+	statsReport := makeReport(stats)
 
 	fmt.Println(visualisation)
-	fmt.Println(report)
+	fmt.Println(statsReport)
 }
