@@ -18,16 +18,6 @@ func gatherStatistics(lengths []int) Statistics {
 	return Statistics{len(lengths), mean, standardDeviation}
 }
 
-func calculateStandardDeviation(mean float64, lengths []int) float64 {
-	totalSquaredDeviation := 0.0
-
-	for _, length := range lengths {
-		totalSquaredDeviation += (float64(length) - mean) * (float64(length) - mean)
-	}
-
-	return math.Sqrt(totalSquaredDeviation / float64(len(lengths)))
-}
-
 func calculateMean(lengths []int) float64 {
 	total := 0.0
 
@@ -36,4 +26,14 @@ func calculateMean(lengths []int) float64 {
 	}
 
 	return total / float64(len(lengths))
+}
+
+func calculateStandardDeviation(mean float64, lengths []int) float64 {
+	totalSquaredDeviation := 0.0
+
+	for _, length := range lengths {
+		totalSquaredDeviation += (float64(length) - mean) * (float64(length) - mean)
+	}
+
+	return math.Sqrt(totalSquaredDeviation / float64(len(lengths)))
 }
