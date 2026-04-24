@@ -1,5 +1,9 @@
 package main
 
+import (
+	"math"
+)
+
 type Statistics struct {
 	numberOfLines     int
 	mean              float64
@@ -21,7 +25,7 @@ func calculateStandardDeviation(mean float64, lengths []int) float64 {
 		totalDeviation += (float64(length) - mean) * (float64(length) - mean)
 	}
 
-	return totalDeviation / float64(len(lengths))
+	return math.Sqrt(totalDeviation / float64(len(lengths)))
 }
 
 func calculateMean(lengths []int) float64 {
