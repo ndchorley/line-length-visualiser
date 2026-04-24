@@ -11,6 +11,8 @@ func reportFor(stats Statistics) string {
 	report += fmt.Sprintf("Mean: %f", stats.mean)
 	report += "\n"
 	report += fmt.Sprintf("Standard deviation: %f", stats.standardDeviation)
+	report += "\n\n"
+	report += fmt.Sprint(stats.histogram)
 
 	return report
 }
