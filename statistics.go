@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"slices"
 )
@@ -9,12 +10,13 @@ type Statistics struct {
 	numberOfLines     int
 	mean              float64
 	standardDeviation float64
-	histogram         map[Bin]int
+	histogram         []Bin
 }
 
 type Bin struct {
 	start int
 	end   int
+	count int
 }
 
 func gatherStatistics(lengths []int) Statistics {
@@ -47,29 +49,33 @@ func calculateStandardDeviation(mean float64, lengths []int) float64 {
 	return math.Sqrt(totalSquaredDeviation / float64(len(lengths)))
 }
 
-func buildHistogram(lengths []int) map[Bin]int {
+func buildHistogram(lengths []int) []Bin {
 	lengthsRange := slices.Max(lengths) - slices.Min(lengths)
 	numberOfBins := 10
 	binWidth := int(math.Ceil(float64(lengthsRange) / float64(numberOfBins)))
 
-	histogram := make(map[Bin]int)
+	histogram := make([]Bin, 0, numberOfBins)
 
 	for i := 1; i <= numberOfBins; i++ {
 		start := slices.Min(lengths) + binWidth*(i-1)
 		end := slices.Min(lengths) + binWidth*i
 
-		bin := Bin{start, end}
-		histogram[bin] = countHowMany(bin, lengths)
+		count := countHowMany(start, end, lengths)
+
+		bin := Bin{start, end, count}
+		fmt.Println(bin)
+
+		histogram = append(histogram, bin)
 	}
 
 	return histogram
 }
 
-func countHowMany(bin Bin, lengths []int) int {
+func countHowMany(start int, end int, lengths []int) int {
 	count := 0
 
 	for _, length := range lengths {
-		if length >= bin.start && length < bin.end {
+		if length >= start && length < end {
 			count += 1
 		}
 	}
