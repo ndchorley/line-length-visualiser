@@ -18,15 +18,23 @@ func reportFor(stats Statistics) string {
 }
 
 func visualisationFor(lengths []int) string {
-	var visualisation strings.Builder
+	lines := linesFor(lengths)
+	visualisation := strings.Join(lines, "\n")
+
+	return visualisation
+}
+
+func linesFor(lengths []int) []string {
+	lines := make([]string, 0)
 
 	for _, length := range lengths {
+		var line strings.Builder
+
 		for i := 1; i <= length; i++ {
-			visualisation.WriteString(`◼`)
+			line.WriteString(`◼`)
 		}
 
-		visualisation.WriteString("\n")
+		lines = append(lines, line.String())
 	}
-
-	return visualisation.String()
+	return lines
 }
