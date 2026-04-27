@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 	"slices"
 )
@@ -61,9 +60,7 @@ func buildHistogram(lengths []int) []Bin {
 		end := slices.Min(lengths) + binWidth*i
 
 		count := countHowMany(start, end, lengths)
-
 		bin := Bin{start, end, count}
-		fmt.Println(bin)
 
 		histogram = append(histogram, bin)
 	}
