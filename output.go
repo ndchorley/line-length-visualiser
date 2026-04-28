@@ -12,7 +12,7 @@ func reportFor(stats Statistics) string {
 	report += "\n"
 	report += fmt.Sprintf("Standard deviation: %f", stats.standardDeviation)
 	report += "\n\n"
-	report += fmt.Sprint(stats.histogram)
+	report += graphOf(stats.histogram)
 
 	return report
 }
@@ -37,4 +37,33 @@ func linesFor(lengths []int) []string {
 		lines = append(lines, line.String())
 	}
 	return lines
+}
+
+func graphOf(histogram []Bin) string {
+	counts := countsFrom(histogram)
+	graphLines := addBinLabels(linesFor(counts), histogram)
+
+	return fmt.Sprint(strings.Join(graphLines, "\n"))
+}
+
+func addBinLabels(lines []string, histogram []Bin) []string {
+	linesWithLabels := make([]string, 0)
+
+	for index, line := range lines {
+		lineWithLabel := fmt.Sprintf("%d-%d  |%s", histogram[index].start, histogram[index].end, line)
+
+		linesWithLabels = append(linesWithLabels, lineWithLabel)
+	}
+
+	return linesWithLabels
+}
+
+func countsFrom(histogram []Bin) []int {
+	counts := make([]int, 0)
+
+	for _, bin := range histogram {
+		counts = append(counts, bin.count)
+	}
+
+	return counts
 }
