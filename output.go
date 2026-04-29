@@ -47,15 +47,69 @@ func graphOf(histogram []Bin) string {
 }
 
 func addBinLabels(lines []string, histogram []Bin) []string {
-	linesWithLabels := make([]string, 0)
+	binLabels := binLabelsFor(histogram)
 
-	for index, line := range lines {
-		lineWithLabel := fmt.Sprintf("%d-%d  |%s", histogram[index].start, histogram[index].end, line)
+	labelled := make([]string, 0)
 
-		linesWithLabels = append(linesWithLabels, lineWithLabel)
+	for i, line := range lines {
+		thisLine := binLabels[i] + "|" + line
+
+		labelled = append(labelled, thisLine)
 	}
 
-	return linesWithLabels
+	return labelled
+}
+
+func binLabelsFor(histogram []Bin) []string {
+	labels := make([]string, 0)
+
+	for _, bin := range histogram {
+		label := fmt.Sprintf("%d-%d", bin.start, bin.end)
+
+		labels = append(labels, label)
+	}
+
+	return addPadding(labels)
+}
+
+func addPadding(labels []string) []string {
+	max := maxLengthOf(labels)
+
+	withPadding := make([]string, 0)
+
+	for _, label := range labels {
+		if len(label) < max {
+			padded := padTo(max, label)
+
+			withPadding = append(withPadding, padded)
+		} else {
+			withPadding = append(withPadding, label)
+		}
+	}
+
+	return withPadding
+}
+
+func padTo(max int, label string) string {
+	amountOfPadding := max - len(label)
+
+	padding := strings.Repeat(" ", amountOfPadding)
+
+	return padding + label
+}
+
+func maxLengthOf(labels []string) int {
+	maxSoFar := len(labels[0])
+
+	for i := 1; i < len(labels); i++ {
+		thisLength := len(labels[i])
+
+		if thisLength > maxSoFar {
+			maxSoFar = thisLength
+		}
+	}
+
+	return maxSoFar
 }
 
 func countsFrom(histogram []Bin) []int {
