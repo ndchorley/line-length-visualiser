@@ -6,6 +6,10 @@ import (
 )
 
 func readLines(fileName string) []string {
+	return linesIn(fileName)
+}
+
+func linesIn(fileName string) []string {
 	contents := readFile(fileName)
 
 	lines := strings.Split(contents, "\n")
