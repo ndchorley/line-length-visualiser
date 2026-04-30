@@ -12,6 +12,9 @@ func main() {
 	lengths := toLengths(lines)
 	stats := gatherStatistics(lengths)
 
-	fmt.Println(visualisationFor(lengths))
+	if len(fileNames) == 1 {
+		fmt.Println(visualisationFor(lengths))
+	}
+
 	fmt.Println(reportFor(stats))
 }
