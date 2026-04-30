@@ -2,11 +2,20 @@ package main
 
 import (
 	"os"
+	"slices"
 	"strings"
 )
 
-func readLines(fileName string) []string {
-	return linesIn(fileName)
+func readLines(fileNames []string) []string {
+	lines := make([]string, 0)
+
+	for _, fileName := range fileNames {
+		theseLines := linesIn(fileName)
+
+		lines = slices.Concat(lines, theseLines)
+	}
+
+	return lines
 }
 
 func linesIn(fileName string) []string {

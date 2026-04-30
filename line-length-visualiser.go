@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	fileName := os.Args[1]
-	lines := readLines(fileName)
+	fileNames := os.Args[1:]
+	lines := readLines(fileNames)
 
 	lengths := toLengths(lines)
 	stats := gatherStatistics(lengths)
