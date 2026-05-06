@@ -50,7 +50,7 @@ func calculateStandardDeviation(mean float64, lengths []int) float64 {
 
 func buildHistogram(lengths []int) []Bin {
 	lengthsRange := slices.Max(lengths) - slices.Min(lengths)
-	numberOfBins := 10
+	numberOfBins := int(math.Sqrt(float64(len(lengths))))
 	binWidth := int(math.Ceil(float64(lengthsRange) / float64(numberOfBins)))
 
 	histogram := make([]Bin, 0, numberOfBins)
