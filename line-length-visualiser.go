@@ -9,7 +9,7 @@ func main() {
 	fileNames := os.Args[1:]
 	lines := readLines(fileNames)
 
-	lengths := toLengths(lines)
+	lengths := lengthsOf(lines)
 	stats := gatherStatistics(lengths)
 
 	if len(fileNames) == 1 {

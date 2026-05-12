@@ -1,6 +1,6 @@
 package main
 
-func toLengths(lines []string) []int {
+func lengthsOf(lines []string) []int {
 	lengths := make([]int, len(lines))
 
 	for index, line := range lines {
