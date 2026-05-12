@@ -6,11 +6,11 @@ import (
 	"strings"
 )
 
-func readLinesIn(fileNames []string) []string {
+func readLinesIn(files []string) []string {
 	lines := make([]string, 0)
 
-	for _, fileName := range fileNames {
-		theseLines := linesIn(fileName)
+	for _, file := range files {
+		theseLines := linesIn(file)
 
 		lines = slices.Concat(lines, theseLines)
 	}
