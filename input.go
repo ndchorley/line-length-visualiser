@@ -7,15 +7,15 @@ import (
 )
 
 func readLinesIn(files []string) []string {
-	lines := make([]string, 0)
+	allLines := make([]string, 0)
 
 	for _, file := range files {
 		theseLines := linesIn(file)
 
-		lines = slices.Concat(lines, theseLines)
+		allLines = slices.Concat(allLines, theseLines)
 	}
 
-	return lines
+	return allLines
 }
 
 func linesIn(fileName string) []string {
