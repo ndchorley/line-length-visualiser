@@ -18,16 +18,16 @@ func readLinesIn(files []string) []string {
 	return allLines
 }
 
-func linesIn(fileName string) []string {
-	contents := readFile(fileName)
+func linesIn(file string) []string {
+	contents := readFile(file)
 
 	lines := strings.Split(contents, "\n")
 
 	return lines[0 : len(lines)-1]
 }
 
-func readFile(fileName string) string {
-	bytes, _ := os.ReadFile(fileName)
+func readFile(file string) string {
+	bytes, _ := os.ReadFile(file)
 	contents := string(bytes)
 
 	return contents
