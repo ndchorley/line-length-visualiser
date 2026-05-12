@@ -7,7 +7,7 @@ import (
 
 func main() {
 	files := os.Args[1:]
-	lines := readLines(files)
+	lines := readLinesIn(files)
 
 	lengths := lengthsOf(lines)
 	stats := gatherStatistics(lengths)

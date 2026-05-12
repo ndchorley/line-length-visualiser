@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func readLines(fileNames []string) []string {
+func readLinesIn(fileNames []string) []string {
 	lines := make([]string, 0)
 
 	for _, fileName := range fileNames {
